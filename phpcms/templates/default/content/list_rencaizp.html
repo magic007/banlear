@@ -1,0 +1,23 @@
+{template "content","header"}
+<!--人才招聘 开始 -->
+<div class="job">
+	<div class="main">
+		<h3 class="vh">人才招聘</h3>
+		<div class="job_main">
+		{pc:content action="lists" catid="$catid" moreinfo="1" num="1" order="listorder Desc,id DESC" page="$page"}
+		{loop $data $r}
+			<div>
+				{$r[content]}
+			</div>
+		{/loop}
+		{/pc}
+		</div>
+	</div>
+</div>
+<!--人才招聘 结束 -->
+<script type="text/javascript">
+$(function(){
+	  $("div.job_main").niceScroll({cursorcolor:"#777",cursorwidth:"3px",cursorborder:"none"});	
+})
+</script>
+{template "content","footer"}

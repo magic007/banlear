@@ -1,0 +1,44 @@
+{template "content","header"}
+
+
+
+<!--公司介绍 开始 -->
+<div class="about">
+	<div class="main">
+         {pc:content action="lists" catid="$catid" num="5" moreinfo="1" order="listorder Desc,id DESC" page="$page"}
+		<div class="about_menu">
+       		 {php $i=0;}
+		{loop $data $r}
+			<a href="javascript:;" {if $i==0}class="current"{/if} pid="{$r[id]}">{str_cut($r[title],30)}</a>
+         {php $i++}
+       	 {/loop}
+		</div>
+		<!--公司介绍正文 开始 -->
+         {php $i=0;}
+		{loop $data $r}
+		<div class="about_main" pid="{$r[id]}" {if $i!=0}style="display:none; height:200px;"{/if}>
+			{$r[content]}
+		</div>
+          {php $i++}
+       	 {/loop}
+		<!--公司介绍正文 结束 -->
+        {/pc}
+	</div>
+</div>
+<!--公司介绍 介绍 -->
+<script type="text/javascript">
+$(function(){
+	//文章组切换事件
+	$(".about_menu a").click(function(){
+		var pid=$(this).attr("pid");
+		$(".about_main:visible ").hide();
+		$(".about_main[pid='"+pid+"']").show();
+		$(".about_menu .current").removeClass("current");
+		$(this).addClass("current");
+	 });
+	 
+	  $(".about_main").niceScroll({cursorcolor:"#777",cursorwidth:"3px",cursorborder:"none"});
+
+})
+</script>
+{template "content","footer"}

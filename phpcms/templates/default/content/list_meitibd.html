@@ -1,0 +1,25 @@
+{template "content","header"}
+<!--媒体报道 开始 -->
+<div class="reports">
+	<div class="main">
+		<h3 class="vh">媒体报道</h3>
+    	{pc:content action="lists" catid="$catid" moreinfo="1" num="10" order="listorder Desc,id DESC" page="$page"}
+		<ul>
+        {loop $data $r}
+			<li>
+			<a href="{$r[url]}"><img src="{thumb($r[thumb],170,100)}" width="170" height="100" alt="媒体报道" /></a>
+			<h3><a href="{$r[url]}">{$r[title]}</a></h3>
+			<p><a href="{$r[url]}">{$r[content]}</a></p>
+			</li>
+         {/loop}
+		</ul>
+        	{/pc}
+	</div>
+</div>
+<!--媒体报道 结束 -->
+<script type="text/javascript">
+$(function(){
+	  $("div.main ul").niceScroll({cursorcolor:"#777",cursorwidth:"3px",cursorborder:"none"});	
+})
+</script>
+{template "content","footer"}
